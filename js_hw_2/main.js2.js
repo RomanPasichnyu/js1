@@ -93,16 +93,16 @@ let week = 2;
     case 2: console.log('tuesday');break;
     case 3: console.log('wednesday');break;
     case 4: console.log('thursday');break;
-    case 5: console.log('friday');break;
-    case 6: console.log('saturday');break;
-    case 7: console.log('sunday');break;
-    default: console.log('False');}
+        case 5: console.log('friday');break;
+        case 6: console.log('saturday');break;
+        case 7: console.log('sunday');break;
+        default: console.log('False');}
 
 //     - Користувач вводить або має два числа.
 //         Потрібно знайти та вивести максимальне число з тих двох .
 //         Також потрібно врахувати коли введені рівні числа.
 
-    let number1 = 1;
+let number1 = 1;
     let number2 = 13;
     if (number1 > number2){
         console.log('max is ' + number1)
