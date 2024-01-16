@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+body{
+    margin-left: 25%;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.wrap{
+    background: silver;
+    margin-bottom: 5px;
+    border-radius: 10px ;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid black;
+}
+.comentar{
+    text-decoration: underline;
+    text-align: center;
+    margin-bottom: 50px;
+}
+    </style>
+</head>
+<body>
+<script>
+    let url = new URL(location.href)
+    let postId = url.searchParams.get('postI')
+    let post = JSON.parse(postId)
+
+    fetch(`https://jsonplaceholder.typicode.com/posts/${post}/comments`)
+        .then(response => response.json()).then(array => {
+        for (const user of array) {
+
+            let wrap = document.createElement('div')
+            document.body.appendChild(wrap)
+            wrap.classList.add('wrap')
+            wrap.innerText = `User№: ${user.postId}, Post id : ${user.id}, name: ${user.name}, email: ${user.email} `
+
+            let coments = document.createElement('div')
+            coments.classList.add('comentar')
+            document.body.appendChild(coments)
+            coments.textContent =` Coments :${user.body}`
+
+        }
+        })
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User-details</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<script>
+
+    let url = new URL(location.href)
+    let userJson = url.searchParams.get('userInfo')
+    let user = JSON.parse(userJson)
+    
+    console.log(user)
+    let div = document.createElement('div');
+    document.body.appendChild(div)
+
+
+    function processObject(obj) {
+        for (const key in obj) {
+            console.log(key)
+            if (typeof obj[key] === 'object') {
+                // Рекурсивно викликаємо функцію для вкладеного об'єкту
+                processObject(obj[key]);
+            } else {
+                // Обробка значення, наприклад, можна вивести його у консоль
+                let p = document.createElement('li');
+                div.appendChild(p)
+                p.textContent = `${key} - ${obj[key]}`
+            }
+        }
+    }
+    processObject(user)
+
+    let button = document.createElement('button')
+    document.body.appendChild(button)
+    button.innerText = 'Detali'
+
+    button.addEventListener('click', ()=>{
+        fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/posts`)
+            .then(responce => responce.json())
+            .then(value => {
+                for (const key in value) {
+                    let li = document.createElement('li');
+                    document.body.appendChild(li);
+                    li.innerText = `${key}`
+
+                }
+
+
+
+            })
+
+
+
+
+    })
+
+
+
+
+
+</script>
+
+</body>
+</html>
